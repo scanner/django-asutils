@@ -1,0 +1,19 @@
+{% load asutils %}
+<div class="tag_edit_list">
+  {% moniker object as obj_id %}
+  {% spaceless %}
+    {% for tag in tags %}
+      {% moniker object tag as objtag_id %}
+      <span class="existing_tags" id="existing-{{ obj_id }}">
+        <span class="del_tag">{{ tag.name }}&nbsp;
+	  <a href="#" onClick="remove_tag('{{ tag }}', '{{ objtag_id }}', '{{ object.del_tag_url }}'); false;">{% icon 'tag_blue_delete' %}</a>
+	</span>
+      </span>
+    {% endfor %}
+  {% endspaceless %}
+  <span class="add_tag" id="addspan-{{ obj_id }}">
+    <form id="add-{{ obj_id }}" action="{{ object.add_tag_url }}" method="post">
+      Add tag:&nbsp;<input type="text" name="tag">&nbsp;<a href="#" onClick="add_tag('add-{{ obj_id }}', 'existing-{{ obj_id }}'); false;">{% icon 'tag_blue_add' %}</a>
+    </form>
+  </span>
+</div>
