@@ -20,7 +20,7 @@ setup(
     description = 'Apricot Systematic utils for Django',
     author = 'Eric "Scanner" Luce',
     author_email = 'scanner@apricot.com',
-    url = 'svn+ssh://svn.apricot.com/locker/repository/as-subversion/mediaserv/head',
+    url = 'https://github.com/scanner/django-asutils.git',
     packages = ['asutils', 'asutils.templatetags'],
     package_data = { 'asutils': ['templates/*/*.html']},
     classifiers = ['Development Status :: 4 - Beta',
