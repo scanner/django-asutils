@@ -1,0 +1,10 @@
+This file is just a placeholder currently
+
+Middleware Classes:
+    asutils.middleware.RequireLogin
+    asutils.middleware.ActiveViewMiddleware
+
+App name:
+
+    asutils
+
