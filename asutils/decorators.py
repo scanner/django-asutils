@@ -4,11 +4,16 @@
 """
 Some utility decorators.
 """
+# System imports
+#
 import base64
 
+# Django imports
+#
 from django.http import HttpResponse
 from django.conf import settings
 from django.contrib.auth import authenticate, login
+
 
 ############################################################################
 #
@@ -28,6 +33,7 @@ def wrapped(wrapfunc):
             return func(*args, **kwargs)
         return innerwrapper
     return outerwrapper
+
 
 #############################################################################
 #
@@ -49,9 +55,6 @@ def view_or_basicauth(view, request, test_func, *args, **kwargs):
     if test_func(request.user):
         # Already logged in, just return the view.
         #
-        print "Args is: %s" % str(args)
-        print "kwargs is: %s" % str(kwargs)
-        print "realm: %s" % str(realm)
         return view(request, *args, **kwargs)
 
     # They are not logged in. See if they provided login credentials
@@ -78,6 +81,7 @@ def view_or_basicauth(view, request, test_func, *args, **kwargs):
     response.status_code = 401
     response['WWW-Authenticate'] = 'Basic realm="%s"' % realm
     return response
+
 
 #############################################################################
 #
@@ -120,6 +124,7 @@ def logged_in_or_basicauth():
         return wrapper
     return view_decorator
 
+
 #############################################################################
 #
 def has_perm_or_basicauth(perm):
@@ -146,4 +151,3 @@ def has_perm_or_basicauth(perm):
                                      *args, **kwargs)
         return wrapper
     return view_decorator
-
